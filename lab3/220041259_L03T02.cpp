@@ -14,7 +14,9 @@ class RationalNumber{
         denominator=denominator1;
     }
     double convert(){
-        return numerator/denominator;
+        double numerator1=numerator;
+        double denominator1=denominator;
+        return numerator1/denominator1;
     }
     
     void print(){
@@ -33,7 +35,7 @@ int main(){
     RationalNumber r1;
 
     r1.assign(3,2);
-    r1.convert();
+    cout<<r1.convert()<<endl;
     r1.print();
     r1.invert();
 }
