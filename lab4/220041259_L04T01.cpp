@@ -5,13 +5,14 @@ class Product{
     private:
     struct product{
         string productname,id;
-        int quantity,price,totalinventoryprice,max;
+        int quantity,price,max;
+        
     };
+    static int totalinventoryprice;
     public:
     product p1;
     Product(){
         p1.quantity=0;
-        p1.totalinventoryprice=0;
         p1.productname="";
         p1.price=0;
         p1.max=0;
@@ -63,11 +64,13 @@ class Product{
         }
     }
     void displayTotalInventoryValue(){
-        p1.totalinventoryprice+=p1.quantity*p1.price;
-        cout<<"Total Inventory Price: "<<p1.totalinventoryprice<<endl;   
+        totalinventoryprice+=p1.quantity*p1.price;
+        cout<<"Total Inventory Price: "<<totalinventoryprice<<endl;   
         cout<<endl;    
     } 
 };
+
+int Product::totalinventoryprice=0;
 
 int main(){
     Product p2[3];
@@ -83,7 +86,6 @@ int main(){
     p2[0].displayTotalInventoryValue();
 
     p2[1]=Product("Lenovo","1001",20,10,100);
-
     p2[1].displayDetails(); 
     p2[1].addToInventory(50);
     p2[1].isAvailable(); 
@@ -93,14 +95,12 @@ int main(){
     p2[1].displayTotalInventoryValue();
 
     p2[2]=Product("Samsung","101",20,10,100);
-
     p2[2].displayDetails(); 
     p2[2].addToInventory(50);
     p2[2].isAvailable(); 
     p2[2].purchase(40); 
     p2[2].updatePrice(5); 
-    p2[2].displayInventoryValue() ;
-    
-    
+    p2[2].displayInventoryValue();
+    p2[1].displayTotalInventoryValue();
     
 }
