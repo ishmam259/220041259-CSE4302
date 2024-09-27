@@ -85,7 +85,7 @@ int main(){
     p2[0].displayInventoryValue();
     p2[0].displayTotalInventoryValue();
 
-    p2[1]=Product("Lenovo","1001",20,10,100);
+    p2[1]=Product("Lenovo","1002",20,10,100);
     p2[1].displayDetails(); 
     p2[1].addToInventory(50);
     p2[1].isAvailable(); 
@@ -94,7 +94,7 @@ int main(){
     p2[1].displayInventoryValue();
     p2[1].displayTotalInventoryValue();
 
-    p2[2]=Product("Samsung","101",20,10,100);
+    p2[2]=Product("Samsung","1003",20,10,100);
     p2[2].displayDetails(); 
     p2[2].addToInventory(50);
     p2[2].isAvailable(); 
