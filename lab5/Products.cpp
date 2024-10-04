@@ -127,7 +127,7 @@ void displayInformation(Products &p1){
     return;
 }
 
-void editInformationByKeyboard(Products &p1){
+void editInformationByKeyboard(Products p1[]){
     string name, category_name, description;
     int amount;
     float price, discount;
@@ -212,12 +212,4 @@ void generateInformationRandom(Products p1[]){
     }
 
     category = random();
-}
-
-int main(){
-
-    Products p1[100];
-
-    editInformationByKeyboard(p1[0]);
-    editInformationByKeyboard(p1[1]);
 }
