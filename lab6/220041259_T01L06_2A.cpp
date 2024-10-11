@@ -71,13 +71,13 @@ class Car{
     }
 
     friend istream &operator>>(istream &in, Car &car){
-        cout << "Enter car's manufacturer: ";
+        cout << "Enter car's manufacturer: "<<endl;
         in >> car.make;
-        cout << "Enter car's model: ";
+        cout << "Enter car's model: "<<endl;
         in >> car.model;
-        cout << "Enter car's fuel capacity: ";
+        cout << "Enter car's fuel capacity: "<<endl;
         in >> car.fuelCapacity;
-        cout << "Enter car's current fuel level: ";
+        cout << "Enter car's current fuel level: "<<endl;
         in >> car.fuelLevel;
         cout << endl;
         return in;
@@ -91,13 +91,10 @@ int main(void){
     cout << car1 << car2;
 
     if (car1 == car2){
-        cout << "1" << endl;
-    }
-    else if (car1 < car2){
-        cout << "2" << endl;
+        cout << "Identical" << endl;
     }
     else{
-        cout << "3" << endl;
+        cout << "Not Identical" << endl;
     }
 
     car2 += 5;
