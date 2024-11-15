@@ -1,11 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-enum Mode
+enum opMode
 {
     cooling,
     heating,
-    fanonly
+    fan_only
 };
 
 class SmartDevice {
@@ -27,9 +27,9 @@ class SmartDevice {
 class ThermostatDevice : virtual public SmartDevice {
     protected:
         pair<float, float> temperatureRange;
-        Mode mode;
+        opMode mode;
     public:
-        ThermostatDevice(int d, string b, float f, pair<float, float> t, Mode m) : SmartDevice(d, b, f), temperatureRange(t), mode(m) {}
+        ThermostatDevice(int d, string b, float f, pair<float, float> t, opMode m) : SmartDevice(d, b, f), temperatureRange(t), mode(m) {}
 
         virtual double calculatePowerConsumption(double hours) {
             return powerRating * hours;
@@ -48,7 +48,7 @@ class ThermostatDevice : virtual public SmartDevice {
                 case heating:
                     cout << "Heating";
                     break;
-                case fanonly:
+                case fan_only:
                     cout << "Fan Only";
                     break;
             }
@@ -84,7 +84,7 @@ class SmartThermostat : public ThermostatDevice {
     private:
         bool remoteControlEnabled;
     public:
-        SmartThermostat(int d, string b, float f, pair<float, float> t, Mode m, bool r) : ThermostatDevice(d, b, f, t, m), remoteControlEnabled(r) {}
+        SmartThermostat(int d, string b, float f, pair<float, float> t, opMode m, bool r) : ThermostatDevice(d, b, f, t, m), remoteControlEnabled(r) {}
 
         void diagnose() override {
             ThermostatDevice::diagnose();
@@ -106,7 +106,7 @@ class HybridThermostat : public ThermostatDevice, public SecurityCameraDevice {
     private:
         float energySavingEfficiency;
     public:
-        HybridThermostat(int d, string b, float f, pair<float, float> t, Mode m, int r, float rh, float e)
+        HybridThermostat(int d, string b, float f, pair<float, float> t, opMode m, int r, float rh, float e)
             : SmartDevice(d, b, f),
               ThermostatDevice(d, b, f, t, m),
               SecurityCameraDevice(d, b, f, r, rh),
@@ -129,9 +129,12 @@ class HybridThermostat : public ThermostatDevice, public SecurityCameraDevice {
         ~HybridThermostat() {}
 };
 
-void sortDevicesByPower(SmartDevice **devices, int n) {
-    sort(devices, devices + n, [](SmartDevice *a, SmartDevice *b)
-         { return a->getPowerRating() > b->getPowerRating(); });
+bool comparator(SmartDevice *a, SmartDevice *b) {
+    return a->getPowerRating() > b->getPowerRating();
+}
+
+void sortDevicesByPower(SmartDevice **smartDevices, int noOfDevices) {
+    sort(smartDevices, smartDevices + noOfDevices, comparator);
 }
 
 int main() {
