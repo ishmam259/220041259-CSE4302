@@ -1,11 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-enum opMode
+enum Mode
 {
     cooling,
     heating,
-    fan_only
+    fanonly
 };
 
 class SmartDevice {
@@ -27,9 +27,9 @@ class SmartDevice {
 class ThermostatDevice : virtual public SmartDevice {
     protected:
         pair<float, float> temperatureRange;
-        opMode mode;
+        Mode mode;
     public:
-        ThermostatDevice(int d, string b, float f, pair<float, float> t, opMode m) : SmartDevice(d, b, f), temperatureRange(t), mode(m) {}
+        ThermostatDevice(int d, string b, float f, pair<float, float> t, Mode m) : SmartDevice(d, b, f), temperatureRange(t), mode(m) {}
 
         virtual double calculatePowerConsumption(double hours) {
             return powerRating * hours;
@@ -48,7 +48,7 @@ class ThermostatDevice : virtual public SmartDevice {
                 case heating:
                     cout << "Heating";
                     break;
-                case fan_only:
+                case fanonly:
                     cout << "Fan Only";
                     break;
             }
@@ -84,7 +84,7 @@ class SmartThermostat : public ThermostatDevice {
     private:
         bool remoteControlEnabled;
     public:
-        SmartThermostat(int d, string b, float f, pair<float, float> t, opMode m, bool r) : ThermostatDevice(d, b, f, t, m), remoteControlEnabled(r) {}
+        SmartThermostat(int d, string b, float f, pair<float, float> t, Mode m, bool r) : ThermostatDevice(d, b, f, t, m), remoteControlEnabled(r) {}
 
         void diagnose() override {
             ThermostatDevice::diagnose();
@@ -106,7 +106,7 @@ class HybridThermostat : public ThermostatDevice, public SecurityCameraDevice {
     private:
         float energySavingEfficiency;
     public:
-        HybridThermostat(int d, string b, float f, pair<float, float> t, opMode m, int r, float rh, float e)
+        HybridThermostat(int d, string b, float f, pair<float, float> t, Mode m, int r, float rh, float e)
             : SmartDevice(d, b, f),
               ThermostatDevice(d, b, f, t, m),
               SecurityCameraDevice(d, b, f, r, rh),
