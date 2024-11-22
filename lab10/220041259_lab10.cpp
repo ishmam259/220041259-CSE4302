@@ -32,7 +32,7 @@ public:
     {}
 
 
-    void ServeIceCream()                        //override 
+    void ServeIceCream()              
     {
         if (stock > 0) 
         {
@@ -57,18 +57,18 @@ public:
         }
     }
 
-    void promoteDeal()                                //override 
+    void promoteDeal()                                 
     {
         cout << name << " promoted a deal! Sales doubled for two turns!" << endl;
         sales *= 2;
     }
 
-    virtual void SpecialOffer()                             //override 
+    virtual void SpecialOffer()                             
     {
         cout << name << " has no unique special offer!" << endl;
     }
 
-    void displayStats() const                                   //override 
+    void displayStats() const                                   
     {
         cout << "Seller: " << name <<"\n"
              << ", Stock: " << stock <<"\n"
@@ -112,7 +112,7 @@ public:
     : BaseSeller("Cone Master", 20) 
     {}
 
-    void ServeIceCream()                        //override 
+    void ServeIceCream()                        
     {
         if (stock <= 0) 
         {
@@ -153,7 +153,7 @@ public:
         }
     }
 
-    void SpecialOffer()                            //override 
+    void SpecialOffer()                            
     {
         if (SpecialOfferReady) 
         {
@@ -181,7 +181,7 @@ public:
     : BaseSeller("Sundae Wizard", 15) 
     {}
 
-    void ServeIceCream()                           //override 
+    void ServeIceCream()                           
     {
         if (stock <= 0) {
             cout << name << " is out of stock!" << endl;
@@ -210,7 +210,7 @@ public:
         }
     }
 
-    void SpecialOffer()                                            //override 
+    void SpecialOffer()                                            
     {
         if (SpecialOfferReady) 
         {
@@ -233,7 +233,7 @@ public:
     : BaseSeller("Ice Cream Truck Driver", 30) 
     {}
 
-    void SpecialOffer()                                        //override 
+    void SpecialOffer()                                        
     {
         if (SpecialOfferReady) 
         {
